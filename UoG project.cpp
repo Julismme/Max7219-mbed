@@ -7,21 +7,6 @@ jiu@myself.com
 2017.5.18
 */
 #include "mbed.h"
-#define max7219_reg_noop         0x00
-#define max7219_reg_digit0       0x01
-#define max7219_reg_digit1       0x02
-#define max7219_reg_digit2       0x03
-#define max7219_reg_digit3       0x04
-#define max7219_reg_digit4       0x05
-#define max7219_reg_digit5       0x06
-#define max7219_reg_digit6       0x07
-#define max7219_reg_digit7       0x08
-#define max7219_reg_decodeMode   0x09
-#define max7219_reg_intensity    0x0a
-#define max7219_reg_scanLimit    0x0b
-#define max7219_reg_shutdown     0x0c
-#define max7219_reg_displayTest  0x0f
-
 #define LOW 0
 #define HIGH 1
 
@@ -95,15 +80,9 @@ void setup_dot_matrix (){
     // SPI setup: 8 bits, mode 0
     max72_spi.format(8, 0);
     max72_spi.frequency(100000); //100khz
-    write(max7219_reg_scanLimit, 0x07);
-    write(max7219_reg_decodeMode, 0x00);  // mode 00
-    write(max7219_reg_shutdown, 0x01);    // not in shutdown mode
-    write(max7219_reg_displayTest, 0x00); // no display test
-    for (int e=1; e<=8; e++) {    // empty registers, turn all LEDs off
-        write(e,0);
-    }
-   // maxAll(max7219_reg_intensity, 0x0f & 0x0f);    // the first 0x0f is the value you can set
-     write(max7219_reg_intensity,  0x07);     
+    for (int i=1; i<=8; e++) {    // empty registers, turn all LEDs off
+        write(i,0);
+    }   
 }
 
 void clear(){
